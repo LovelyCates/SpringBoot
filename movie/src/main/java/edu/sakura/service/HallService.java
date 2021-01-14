@@ -10,7 +10,7 @@ public interface HallService {
     // 自己封装过
     Result<Hall> addHall(Hall all);
 
-    // 列表
+    // 列表-
     List<Hall> hallList();
 
     // 参数1：当前页
