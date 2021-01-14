@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sakura.dao.MovieDAO">
+
+    <!--     添加新影厅 -->
+    <insert id="save" parameterType="Movie" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_movie(name, img, description, director, writer, actor, type, area, language, showtime, length, link, grade, status)
+                            values ( #{name}, #{img}, #{description}, #{director}, #{writer}, #{actor},#{type}, #{area}, #{language}, #{showtime}, #{length}, #{link}, #{grade}, #{status})
+    </insert>
+
+    <select id="findByPage" resultType="Movie">
+        select * from tb_movie order by id limit ${start}, #{rows}
+    </select>
+
+    <select id="findTotals" resultType="Integer">
+        select count(*) from tb_movie
+    </select>
+
+    <select id="findMovieVOAll" resultType="MovieVO">
+        select id, name from tb_movie order by id
+    </select>
+
+</mapper>

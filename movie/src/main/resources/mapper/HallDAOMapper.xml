@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sakura.dao.HallDAO">
+
+<!--     添加新影厅 -->
+    <insert id="save" parameterType="Hall" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_hall(id, name, seats, status) values (#{id}, #{name}, #{seats}, #{status})
+    </insert>
+<!--  查询 -->
+    <select id="findAll" resultType="Hall">
+        select id, name, seats, status from tb_hall
+    </select>
+
+<!--  分页查询 limit ?,? -->
+    <select id="findByPage" resultType="Hall">
+        select id, name, seats, status from tb_hall
+        order by id limit #{start}, #{rows}
+    </select>
+
+    <select id="findTotals" resultType="Integer">
+        select count(*) from tb_hall
+    </select>
+
+    <select id="findName" resultType="Hall" parameterType="String">
+        select  id, name, seats, status from tb_hall where name = #{name}
+    </select>
+</mapper>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <!-- 引入bootstrap框架的样式 -->
+    <link rel="stylesheet" type="text/css" href="js/bootstrap/css/bootstrap.min.css" />
+    <!-- 引入字体图标库的样式 -->
+    <link rel="stylesheet" type="text/css" href="font/css/font-awesome.css"/>
+    <style>
+        body{
+            background-image: url("img/bk.png");
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+        }
+
+        div#app {
+            width: 420px;
+            height: 280px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            padding: 40px;
+            color: lightpink;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="app">
+        <span style="color: red;font-size: 14px;"> {{ errmsg }} </span>
+        <form action="" method="post">
+            <div class="form-group">
+                <legend>后台登录</legend>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="fa fa-user"></span>
+                        </div>
+                    </div>
+                    <input type="text" name="name"  v-model="admin.name" class="form-control" placeholder="请输入用户名">
+                </div>
+           </div>
+            <div class="form-group">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <span class="fa fa-lock"></span>
+                        </div>
+                    </div>
+                    <input type="password" aria-describedby="pwd" name="pwd" v-model="admin.pwd" class="form-control" placeholder="请输入密码">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="button" @click="login" class="btn form-control btn-primary" value="登录" />
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data:{
+            admin: {},
+            errmsg: ""
+        },
+        methods: {
+            login(){
+                console.info(this.admin)
+                // 发送请求
+                // axios.post("请求地址", 页面给controller的值).then((res) =>{})
+                axios.post("http://localhost:8080/admin/login", this.admin).then((res)=>{
+                    console.info(res.data)
+                    // res, controller 返回给页面的数据
+                    if(res.data.success)
+                    {
+                        alert("登录成功，点击跳转主页面");
+                        location.href="index.html";
+                    }else {
+                        this.errmsg = res.data.message;
+                    }
+                });
+            }
+        }
+    })
+</script>
