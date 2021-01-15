@@ -26,4 +26,9 @@
         select id, name,seats,status from tb_hall where status = 0
     </select>
 
+
+    <select id="findOne" resultType="Movie" parameterType="int">
+        select * from tb_movie where id = #{id}
+    </select>
+
 </mapper>

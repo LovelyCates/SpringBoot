@@ -3,12 +3,15 @@ package edu.sakura.controller;
 import edu.sakura.entity.Admin;
 import edu.sakura.service.AdminService;
 import edu.sakura.util.Result;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@Api(tags = "管理员相关模块")
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin  // 允许跨域（前后端分离）

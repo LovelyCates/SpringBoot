@@ -19,4 +19,7 @@ public interface MovieService {
 
     // 获取可以使用的影厅
     List<Hall> findUsableHall();
+
+    // 根据电影ID查询电影信息
+    Movie findOne(Integer id);
 }

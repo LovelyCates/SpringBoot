@@ -11,4 +11,8 @@
     <select id="checkUsable" resultType="Integer">
        select count(*) from tb_plan where hall_id = #{hid} and #{t} &gt;= playtime and #{t} &lt;= date_add(playtime, interval 200 minute)
     </select>
+
+    <select id="findPlanListByMovieId" parameterType="int" resultType="Plan">
+        select * from tb_plan where movie_id = #{mid} and playtime > now()
+    </select>
 </mapper>

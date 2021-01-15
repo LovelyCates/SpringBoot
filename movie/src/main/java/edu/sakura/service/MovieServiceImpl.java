@@ -48,4 +48,9 @@ public class MovieServiceImpl implements MovieService{
     public List<Hall> findUsableHall() {
         return movieDAO.findUsableAll();
     }
+
+    @Override
+    public Movie findOne(Integer id) {
+        return movieDAO.findOne(id);
+    }
 }

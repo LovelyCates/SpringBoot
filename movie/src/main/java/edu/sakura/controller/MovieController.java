@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,13 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
+
+    @ApiOperation("根据电影ID查询单个电影信息")
+    @GetMapping("/findMovieById")
+    @ApiImplicitParam(name="id", value = "电影ID", dataType = "Integer")
+    public Movie findMovieById(Integer id ){
+        return movieService.findOne(id);
+    }
 
     @ApiOperation("查询电影部分信息")
     @GetMapping("/findAllMovie")
