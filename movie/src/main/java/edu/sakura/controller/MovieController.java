@@ -3,8 +3,6 @@ package edu.sakura.controller;
 
 import edu.sakura.entity.Hall;
 import edu.sakura.entity.Movie;
-import edu.sakura.entity.MovieVO;
-import edu.sakura.service.HallService;
 import edu.sakura.service.MovieService;
 import edu.sakura.util.GithubUploader;
 import edu.sakura.util.Result;
@@ -13,15 +11,10 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.*;
 
 @Api(tags = "电影相关模块")
@@ -40,16 +33,21 @@ public class MovieController {
 
     @ApiOperation("查询电影部分信息")
     @GetMapping("/findAllMovie")
-    List<MovieVO> findAllMovie(){
+    public List<Movie> findAllMovie(){
         return movieService.findAllMovie();
+    }
+
+    @ApiOperation("查询可以用的Hall")
+    @GetMapping("/findUsableHall")
+    public List<Hall> findUsableHall(){
+        log.info("可以用的Hall=" + movieService.findUsableHall());
+        return movieService.findUsableHall();
     }
 
     /**
      * 处理添加电影的方法
      * @param file 图片
      * @param movie 电影信息对象
-     * @return
-     * @throws Exception
      */
     @ApiOperation("添加电影")
     @PostMapping("/add")

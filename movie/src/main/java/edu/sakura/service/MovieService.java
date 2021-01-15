@@ -1,7 +1,7 @@
 package edu.sakura.service;
 
+import edu.sakura.entity.Hall;
 import edu.sakura.entity.Movie;
-import edu.sakura.entity.MovieVO;
 import edu.sakura.util.Result;
 
 import java.util.List;
@@ -14,5 +14,9 @@ public interface MovieService {
 
     Integer findTotals();
 
-    List<MovieVO> findAllMovie();
+    // 查询所有的电影信息
+    List<Movie> findAllMovie();
+
+    // 获取可以使用的影厅
+    List<Hall> findUsableHall();
 }

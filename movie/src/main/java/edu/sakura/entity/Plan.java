@@ -22,13 +22,15 @@ public class Plan {
     @ApiModelProperty("编号")
     private Integer id;
 
-
     @ApiModelProperty("排片时间")
-    @DateTimeFormat(pattern = "YYYY-MM-dd HH:MM:CC")
+    @DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss")
     private Date playtime;
 
     @ApiModelProperty("座位")
     private String seats;
+
+    @ApiModelProperty("价格")
+    private Float price;
 
     @ApiModelProperty("状态")
     private Integer status;

@@ -1,8 +1,8 @@
 package edu.sakura.service;
 
 import edu.sakura.dao.MovieDAO;
+import edu.sakura.entity.Hall;
 import edu.sakura.entity.Movie;
-import edu.sakura.entity.MovieVO;
 import edu.sakura.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,7 +40,12 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<MovieVO> findAllMovie() {
-        return movieDAO.findMovieVOAll();
+    public List<Movie> findAllMovie() {
+        return movieDAO.findAll();
+    }
+
+    @Override
+    public List<Hall> findUsableHall() {
+        return movieDAO.findUsableAll();
     }
 }

@@ -26,4 +26,8 @@
     <select id="findName" resultType="Hall" parameterType="String">
         select  id, name, seats, status from tb_hall where name = #{name}
     </select>
+
+    <select id="findOne" parameterType="int" resultType="Hall">
+        select id, name, seats, status from tb_hall where id = #{id}
+    </select>
 </mapper>

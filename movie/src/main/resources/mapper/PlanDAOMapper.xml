@@ -4,5 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sakura.dao.PlanDAO">
 
+    <insert id="save" parameterType="Plan" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_plan values (#{id}, #{playtime}, #{price}, #{seats}, 0, #{hall_id}, #{movie_id})
+    </insert>
 
+    <select id="checkUsable" resultType="Integer">
+       select count(*) from tb_plan where hall_id = #{hid} and #{t} &gt;= playtime and #{t} &lt;= date_add(playtime, interval 200 minute)
+    </select>
 </mapper>

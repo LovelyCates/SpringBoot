@@ -16,7 +16,6 @@ import lombok.ToString;
 @ApiModel("影厅实体类")
 public class Hall {
 
-    @JsonIgnore
     @ApiModelProperty("id")
     private Integer id;
 
